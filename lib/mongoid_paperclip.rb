@@ -1,7 +1,7 @@
 require 'paperclip'
 
 ##
-# the id of mongoid is not integer, correct the id_partitioin.
+# the id of mongoid is not integer, correct the id_partition.
 Paperclip.interpolates :id_partition do |attachment, style|
   case id = attachment.instance.id
   when Integer
@@ -9,7 +9,7 @@ Paperclip.interpolates :id_partition do |attachment, style|
   when String
     id.scan(/.{4}/).join("/".freeze)
   else
-    nil
+    id.to_s.scan(/.{4}/).join("/".freeze)
   end
 end
 
